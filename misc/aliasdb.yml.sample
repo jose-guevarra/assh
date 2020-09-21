@@ -1,0 +1,26 @@
+jose-dev:
+  aliasName: jose-dev
+  aliasType: ssh
+  bulkSshArgs: -2C
+  gtCommand: null
+  gtNewWindow: null
+  gtProfile: null
+  gtUseGt: null
+  sshCommand: null
+  sshCompression: true
+  sshHostname: 10.0.1.1
+  sshUser: root
+  sshVersion: '2'
+jose-test:
+  aliasName: jose-test
+  aliasType: ssh
+  bulkSshArgs: -2C
+  gtCommand: null
+  gtNewWindow: null
+  gtProfile: null
+  gtUseGt: null
+  sshCommand: null
+  sshCompression: true
+  sshHostname: jose-test.lab.lcl
+  sshUser: root
+  sshVersion: '2'

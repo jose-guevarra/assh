@@ -1,0 +1,24 @@
+## Autocomplete options for assh
+
+## copy to /etc/bash_completion.d/assh
+## Then run this command from terminal
+#$> . /etc/bash_completion.d/assh
+
+_assh()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=`assh -l` 
+
+    if [[ ${cur} == -* ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" - ${cur}) )
+        return 0
+    else
+        COMPREPLY=( $(compgen -W "${opts}" ${cur}) )
+        return 0
+    fi
+}
+
+complete -F _assh assh

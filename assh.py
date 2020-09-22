@@ -1,10 +1,9 @@
-#!/usr/bin/python
-## Jose Guevarra 7.2012
+#!/usr/bin/python3
 
 import argparse
 import sys
 
-from aliasdb import *
+from asshdb import *
 from asshconfig import *
 from asshconnect import *
 
@@ -23,53 +22,40 @@ if __name__ == '__main__':
 
     ## Load our config
     asshconfig = AsshConfig()
-    aliasdb = Aliasdb(asshconfig)
+    asshdb = Asshdb(asshconfig)
     
     if args['alias']:
         
         ## verify alias
-        if aliasdb.checkAlias(args['alias']) and aliasdb.aliases[args['alias']].aliasType == 'ssh':
-            #print 'connect to alias: ' + args['alias']
-            asshconnect = AsshConnect(aliasdb.aliases[args['alias']])
+        if asshdb.checkAlias(args['alias']) and asshdb.aliases[args['alias']].aliasType == 'ssh':
+            asshconnect = AsshConnect(asshdb.aliases[args['alias']])
             asshconnect.connect()
             sys.exit()
         else:
-            print args['alias'] + ': Alias not found or not ssh type.'
+            print(args['alias'] + ': Alias not found or not ssh type.')
             sys.exit()
     elif args['list']: # print alias list (used by autocomplete)
         aliaslist = ''
-        for k in aliasdb.aliases:
+        for k in asshdb.aliases:
             aliaslist += k + ' '
-        print aliaslist.strip()
+        print(aliaslist.strip())
         sys.exit()
     elif args['print']:
         
-        print "Print alias: " + args['print']
+        print("Print alias: " + args['print'])
     
-        aliasdb.printAlias(args['print'])
+        asshdb.printAlias(args['print'])
         
-        ##aliasdb.add({'aliasName': 'otaku', 'sshHostname': 'otaku.freeshell.org', 'sshCompression': True, 'sshVersion': '2'})
-        ##aliasdb.aliases['otaku'].setOption('sshUser', 'jose')
-        
-        ##aliasdb.printAlias('otaku')
-        ##aliasdb.save()
-        #aliasdb.aliases['otaku'].aliasDict()
         sys.exit()
     elif args['all']:
-        print "print all aliases"
+        print("print all aliases")
         
-        for k in aliasdb.aliases:
-            aliasdb.printAlias(k)
+        for k in asshdb.aliases:
+            asshdb.printAlias(k)
         
         sys.exit()
 
     else:
         sys.exit()
     
-    
-    
-    
-    
-                
-                
     

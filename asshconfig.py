@@ -8,6 +8,8 @@ import yaml
 #  config file gets created by package install
 #  
 
+# @todo look for asshdb.yml in default location, else try config file to find
+#       path to asshdb.yml
 
 class AsshConfig(object):
     'Handles running commands from alias info'
@@ -27,6 +29,6 @@ class AsshConfig(object):
             with open(configFile) as f:
                 self.config = yaml.load(f)
         except IOError as e:
-            print 'Configuration file not found:' + configFile
+            print('Configuration file not found:' + configFile)
             sys.exit()
         

@@ -29,7 +29,7 @@ By default, Ussh looks for a configuration file in
 
 NOTES ON SECURITY:
 
-Keep your aliasdb.yml file secure and not visible to anyone
+Keep your asshdb.yml file secure and not visible to anyone
 else.  This file contains connection information and
 credentials for the ssh servers you connect to.
 

@@ -41,14 +41,11 @@ if __name__ == '__main__':
         print(aliaslist.strip())
         sys.exit()
     elif args['print']:
-        
-        print("Print alias: " + args['print'])
-    
         asshdb.printAlias(args['print'])
-        
         sys.exit()
     elif args['all']:
-        print("print all aliases")
+        print("Print All Aliases")
+        print("-----------------")
         
         for k in asshdb.aliases:
             asshdb.printAlias(k)

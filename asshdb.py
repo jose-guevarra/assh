@@ -48,7 +48,7 @@ class Asshdb(object):
             self.asshdb[k] = self.aliases[k].__dict__
 
         ## make a copy of the asshdb file before overwriting it
-        copyfile(self.asshConfig.config['asshdb'], self.asshConfig.configDir + '/asshdb.yaml.bak')
+        copyfile(self.asshConfig.config['asshdb'], self.asshConfig.configDir + '/asshdb.yml.bak')
 
         try:
             with open(asshdbfile, 'w') as f:
@@ -65,21 +65,13 @@ class Asshdb(object):
             del self.aliases[alias]
 
     def add(self, alias_dict):
-        ##@todo: make sure required fields are filled
         self.aliases[alias_dict['aliasName']] = Alias(alias_dict)
 
     def printAlias(self, alias):
         if self.checkAlias(alias):
-            ##@todo: add sorting by key
-            for k,v in self.aliases[alias].__dict__.iteritems():
-                if v:
-                    if type(v) is BooleanType:
-                        boolstr = 'True' if v else 'False'
-                        print(" " + k + ": " + boolstr)
-                    else:
-                        print(" " + k + ": " + v)
-                else:
-                    print(" " + k + ": ")
+            print("Alias: " + alias)
+            for k,v in vars(self.aliases[alias]).items():
+                print(" " , k , ": " , v)
             print("")
         else:
             print("Alias not found: " + alias)
@@ -101,20 +93,11 @@ class Alias(object):
     Name = "Alias"
 
     def __init__(self, opt_dict = {}):
-        self.aliasName = None         # name of the alias
-        self.aliasdesc = ''           # Alias description field
-        self.aliasType = 'ssh'          # ssh, cmd, container
-        self.bulkSshArgs = None       ## for now use bulk options
-        self.sshUser =   None             # user to connect as
+        self.aliasDesc = ''           # Alias description field
+        self.aliasType = 'ssh'        # ssh only supported
+        self.bulkSshArgs = None       # *for now use bulk options
+        self.sshUser =   None         # user to connect as
         self.sshHostname = None
-        self.sshCommand = None
-        self.Command = None
-        self.sshVersion = None        # ssh version -X 
-        self.sshCompression = False    # ssh -C
-        self.gtUseGt = None          # open in new gnome-terminal (otherwise just ssh)
-        self.gtProfile = None         # a test gnome-terminal option
-        self.gtNewWindow = None       # tab,window,none
-        self.gtCommand = None
         
         for k in opt_dict:
             self.setOption(k, opt_dict[k])

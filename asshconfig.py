@@ -6,7 +6,6 @@ import os
 import yaml
 ## AsshConfig object
 #  config file gets created by package install
-#  
 
 # @todo look for asshdb.yml in default location, else try config file to find
 #       path to asshdb.yml
